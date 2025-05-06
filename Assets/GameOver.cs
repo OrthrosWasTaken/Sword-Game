@@ -15,6 +15,8 @@ public class GameOver : MonoBehaviour
             isGameOver = true;
             gameOverScreen.setup(0);
             Time.timeScale = 0f; 
+            Cursor.lockState = CursorLockMode.None; 
+            Cursor.visible = true;
         }
     }
 }
