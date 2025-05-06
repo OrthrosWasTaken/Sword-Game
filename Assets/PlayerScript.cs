@@ -2,9 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System.Security.Cryptography;
+using UnityEditor;
 
 public class PlayerScript: MonoBehaviour
 {
+   
     [Header("Movement")]
     public float moveSpeed;
 
@@ -56,6 +59,8 @@ public class PlayerScript: MonoBehaviour
             rb.linearDamping = groundDrag;
         else
             rb.linearDamping = 0;
+
+       
     }
 
     private void FixedUpdate()
@@ -116,4 +121,7 @@ public class PlayerScript: MonoBehaviour
     {
         readyToJump = true;
     }
+    
+    
+   
 }
