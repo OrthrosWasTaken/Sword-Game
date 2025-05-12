@@ -1,33 +1,31 @@
-    using UnityEngine;
+using UnityEngine;
 
-    public class PlayerHealth : MonoBehaviour
-    {
-    [Header ("Health")]
-
-    public int maxHealth = 100;
-    public int currentHealth;
-    public HealthBar healthBar;    
+public class PlayerHealth : HP
+{
+    public HealthBar healthBar;
     public GameOverScreen gameOverScreen;
-    void Start()
+
+   
+    void Awake()
+    {
+        base.Start(); 
+        healthBar.SetMaxHealth(maxHealth);
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.F))
         {
-            currentHealth = maxHealth;
-            healthBar.SetMaxHealth(maxHealth);
+            TakeDamage(20);
         }
 
-        void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.F))
-            {
-                TakeDamage(20);
-            }
-            if (currentHealth <= 0)
-            {
-                FindFirstObjectByType<GameOver>().PlayerDied();
-            }
-        }
-        void TakeDamage(int damage)
-        {
-            currentHealth -= damage;
-            healthBar.SetHealth(currentHealth);
-        }
+        Death(); 
     }
+
+    
+    public override void TakeDamage(int damage)
+    {
+        base.TakeDamage(damage); 
+        healthBar.SetHealth(currentHealth);
+    }
+}
