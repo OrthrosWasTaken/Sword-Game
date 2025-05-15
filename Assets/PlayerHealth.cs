@@ -5,27 +5,25 @@ public class PlayerHealth : HP
     public HealthBar healthBar;
     public GameOverScreen gameOverScreen;
 
-   
+
     void Awake()
     {
-        base.Start(); 
+        base.Start();
         healthBar.SetMaxHealth(maxHealth);
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F))
+        if (currentHealth <= 0 )
         {
-            TakeDamage(20);
+            FindFirstObjectByType<GameOver>().PlayerDied();
         }
-
-        Death(); 
     }
-
     
+
     public override void TakeDamage(int damage)
     {
-        base.TakeDamage(damage); 
+        base.TakeDamage(damage);
         healthBar.SetHealth(currentHealth);
     }
 }
